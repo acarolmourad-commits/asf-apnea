@@ -3,46 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASF Apneia — Treinador de apneia para surfistas</title>
-<meta name="description" content="Treine apneia e respiração para aguentar wipeouts com segurança. Tabelas CO2/O2, timer e evolução. Satélite do app ASF.">
-<link rel="canonical" href="https://acarolmourad-commits.github.io/asf-apnea/">
-<style>body{font-family:system-ui,sans-serif;margin:0;background:#0f172a;color:#e2e8f0}header{background:#0ea5e9;color:#082f49;padding:2rem;text-align:center}nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem;background:#1e293b}nav a{color:#7dd3fc;text-decoration:none;font-size:.85rem}main{max-width:640px;margin:2rem auto;padding:0 1rem;text-align:center}.card{background:#1e293b;border-radius:16px;padding:1.5rem;margin-bottom:1rem}#timer{font-size:4rem;font-variant-numeric:tabular-nums;margin:1rem 0}button{background:#0ea5e9;color:#082f49;border:0;border-radius:9999px;padding:.8rem 1.6rem;font-size:1rem;font-weight:700;cursor:pointer;margin:.25rem}button.sec{background:#334155;color:#e2e8f0}.warn{color:#fbbf24;font-size:.85rem}footer{text-align:center;padding:2rem;color:#64748b}</style>
+<title>ASF Apneia — ASF</title>
+<meta name="description" content="Treinador de apneia e respiração para segurança em wipeouts">
+<style>
+:root{--rosa:#ff4d8d;--roxo:#7b2ff7;--areia:#fff5ec;--mar:#00c2cb}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
+body{background:linear-gradient(160deg,#fff5ec,#ffe3f1 60%,#e0f7fa);min-height:100vh;color:#333}
+header{background:linear-gradient(90deg,var(--rosa),var(--roxo));color:#fff;padding:2rem 1rem;text-align:center}
+header h1{font-size:2rem} header p{opacity:.9;margin-top:.4rem}
+nav{display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;padding:.7rem;background:#fff;box-shadow:0 2px 8px #0001;position:sticky;top:0;z-index:10;max-height:38vh;overflow:auto}
+nav a{background:var(--areia);border:1px solid #ffd3e6;color:#c2185b;padding:.25rem .6rem;border-radius:20px;font-size:.72rem;text-decoration:none}
+nav a:hover{background:var(--rosa);color:#fff}
+main{max-width:760px;margin:1.5rem auto;padding:0 1rem}
+.card{background:#fff;border-radius:16px;padding:1.4rem;box-shadow:0 4px 16px #7b2ff720;margin-bottom:1.2rem}
+.card h2{color:var(--roxo);margin-bottom:.6rem;font-size:1.2rem}
+button{background:linear-gradient(90deg,var(--rosa),var(--roxo));color:#fff;border:none;padding:.6rem 1.2rem;border-radius:24px;font-size:1rem;cursor:pointer}
+button:hover{opacity:.85}
+input,select,textarea{padding:.5rem;border:1px solid #ddd;border-radius:10px;width:100%;margin:.3rem 0;font-size:1rem}
+.xp{position:fixed;bottom:1rem;right:1rem;background:#fff;border:2px solid var(--rosa);border-radius:24px;padding:.4rem 1rem;font-weight:bold;color:var(--roxo);box-shadow:0 4px 12px #0002;z-index:20}
+footer{text-align:center;padding:2rem;font-size:.8rem;color:#888}
+</style>
 </head>
 <body>
-<header><h1>ASF Apneia 🫁</h1><p>Treinador de apneia e respiração — segure a calma no wipeout</p></header>
-<nav id="net"></nav>
+<header><h1>🤿 ASF Apneia</h1><p>Treinador de apneia e respiração para segurança em wipeouts</p></header>
+<nav><a href="https://acarolmourad-commits.github.io/asf-app/">🏄‍♀️ ASF App</a>
+<a href="https://acarolmourad-commits.github.io/asf-praias/">Praias</a>
+<a href="https://acarolmourad-commits.github.io/asf-previsao/">Previsão</a>
+<a href="https://acarolmourad-commits.github.io/asf-treino/">Treino</a>
+<a href="https://acarolmourad-commits.github.io/asf-eventos/">Eventos</a>
+<a href="https://acarolmourad-commits.github.io/asf-glossario/">Glossário</a>
+<a href="https://acarolmourad-commits.github.io/asf-seguranca/">Segurança</a>
+<a href="https://acarolmourad-commits.github.io/asf-comunidade/">Comunidade</a>
+<a href="https://acarolmourad-commits.github.io/asf-equipamento/">Equipamento</a>
+<a href="https://acarolmourad-commits.github.io/asf-quiz/">Quiz</a>
+<a href="https://acarolmourad-commits.github.io/asf-nutricao/">Nutrição</a>
+<a href="https://acarolmourad-commits.github.io/asf-historia/">História</a>
+<a href="https://acarolmourad-commits.github.io/asf-viagens/">Viagens</a>
+<a href="https://acarolmourad-commits.github.io/asf-bemestar/">Bem-estar</a>
+<a href="https://acarolmourad-commits.github.io/asf-diario/">Diário</a>
+<a href="https://acarolmourad-commits.github.io/asf-eco/">Eco</a>
+<a href="https://acarolmourad-commits.github.io/asf-kids/">Kids</a>
+<a href="https://acarolmourad-commits.github.io/asf-mental/">Mental</a>
+<a href="https://acarolmourad-commits.github.io/asf-ranking/">Ranking</a>
+<a href="https://acarolmourad-commits.github.io/asf-respira/">Respira</a>
+<a href="https://acarolmourad-commits.github.io/asf-sos/">Sos</a>
+<a href="https://acarolmourad-commits.github.io/asf-volume/">Volume</a>
+<a href="https://acarolmourad-commits.github.io/asf-yoga/">Yoga</a>
+<a href="https://acarolmourad-commits.github.io/asf-alerta/">Alerta</a>
+<a href="https://acarolmourad-commits.github.io/asf-carona/">Carona</a>
+<a href="https://acarolmourad-commits.github.io/asf-clube/">Clube</a>
+<a href="https://acarolmourad-commits.github.io/asf-desafio/">Desafio30</a>
+<a href="https://acarolmourad-commits.github.io/asf-galeria/">Galeria</a>
+<a href="https://acarolmourad-commits.github.io/asf-goldenhour/">GoldenHour</a>
+<a href="https://acarolmourad-commits.github.io/asf-leitura/">LeituraMar</a>
+<a href="https://acarolmourad-commits.github.io/asf-manobras/">Manobras</a>
+<a href="https://acarolmourad-commits.github.io/asf-mapa/">Mapa</a>
+<a href="https://acarolmourad-commits.github.io/asf-mare/">Maré</a>
+<a href="https://acarolmourad-commits.github.io/asf-mentorias/">Mentorias</a>
+<a href="https://acarolmourad-commits.github.io/asf-mercado/">Mercado</a>
+<a href="https://acarolmourad-commits.github.io/asf-parceiras/">Parceiras</a>
+<a href="https://acarolmourad-commits.github.io/asf-ponto/">Ponto</a>
+<a href="https://acarolmourad-commits.github.io/asf-popup/">Pop-up</a>
+<a href="https://acarolmourad-commits.github.io/asf-sonhos/">Sonhos</a></nav>
 <main>
-<div class="card warn">⚠️ NUNCA treine apneia na água sozinha. Este app é para treino em seco, em segurança.</div>
-<div class="card">
-<h2>⏱️ Teste de apneia máxima</h2>
-<div id="timer">0:00</div>
-<button onclick="startHold()">Iniciar</button>
-<button class="sec" onclick="stopHold()">Parar e salvar</button>
-<p id="best"></p>
-</div>
-<div class="card">
-<h2>📋 Tabela CO2 (tolerância)</h2>
-<p>8 rodadas: respire 2:00, segure 45s • respire 1:45, segure 45s • reduza a respiração 15s por rodada mantendo o mesmo tempo de apneia.</p>
-<button onclick="startTable('co2')">Iniciar tabela CO2</button>
-</div>
-<div class="card">
-<h2>🌊 Tabela O2 (apneia máxima)</h2>
-<p>8 rodadas: respiração fixa de 2:00; a apneia aumenta 15s a cada rodada a partir de 50% do seu máximo.</p>
-<button onclick="startTable('o2')">Iniciar tabela O2</button>
-</div>
-<div class="card" id="log"></div>
+<div class="card"><h2>⏱️ Teste de Apneia (sentada, em segurança)</h2><p>⚠️ <b>Nunca</b> treine apneia na água sozinha. Faça sentada/deitada em local seguro.</p>
+<h1 id="t" style="text-align:center;font-size:3rem;color:var(--mar)">0:00</h1>
+<div style="text-align:center"><button onclick="start()" id="btn">▶ Iniciar</button> <button onclick="stop()">⏹ Parar e salvar</button></div>
+<p style="text-align:center;margin-top:.5rem">Seu recorde: <b id="rec">0:00</b></p></div>
+<div class="card"><h2>📈 Por que treinar?</h2><p>Em um wipeout, ficar calma em apneia por 20-30s pode salvar sua vida. Treine CO₂ tolerante: respire fundo 3x, segure, relaxe. Combine com o <a href='https://acarolmourad-commits.github.io/asf-respira/'>ASF Respira</a>.</p></div>
+<div class="card"><h2>🌐 Ecossistema ASF</h2><p>Este app faz parte da constelação ASF — Associação de Surf Feminino. Ganhe XP aqui e veja seu progresso no <a href="https://acarolmourad-commits.github.io/asf-ranking/">ASF Ranking</a>. App principal: <a href="https://acarolmourad-commits.github.io/asf-app/">ASF App</a>.</p></div>
 </main>
-<footer>ASF Apneia — satélite do <a href="https://acarolmourad-commits.github.io/asf-app/" style="color:#7dd3fc">app ASF</a> · combine com <a href="https://acarolmourad-commits.github.io/asf-seguranca/" style="color:#7dd3fc">ASF Segurança</a> e <a href="https://acarolmourad-commits.github.io/asf-bemestar/" style="color:#7dd3fc">ASF Bem-Estar</a></footer>
+<div class="xp">⭐ XP: <span id="xp">0</span></div>
+<footer>ASF — Associação de Surf Feminino · Feito com 🌊 e 💜 · <a href="https://acarolmourad-commits.github.io/">hub</a> · <a href="https://acarolmourad-commits.github.io/asf-app/">asf-app</a></footer>
 <script>
-const sites=[["asf-app","App ASF"],["asf-praias","Praias"],["asf-previsao","Previsão"],["asf-treino","Treino"],["asf-eventos","Eventos"],["asf-glossario","Glossário"],["asf-comunidade","Comunidade"],["asf-seguranca","Segurança"],["asf-equipamento","Equipamento"],["asf-quiz","Quiz"],["asf-nutricao","Nutrição"],["asf-viagens","Viagens"],["asf-bemestar","Bem-Estar"],["asf-diario","Diário"],["asf-carona","Carona"]];
-document.getElementById('net').innerHTML=sites.map(s=>`<a href="https://acarolmourad-commits.github.io/${s[0]}/">${s[1]}</a>`).join('');
-let iv=null,t0=0;
-const fmt=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
-function startHold(){t0=Date.now();clearInterval(iv);iv=setInterval(()=>{document.getElementById('timer').textContent=fmt((Date.now()-t0)/1000);},200);}
-function stopHold(){if(!t0)return;clearInterval(iv);const s=(Date.now()-t0)/1000;t0=0;const best=Math.max(s,parseFloat(localStorage.getItem('asf-apnea-best')||0));localStorage.setItem('asf-apnea-best',best);const hist=JSON.parse(localStorage.getItem('asf-apnea-hist')||'[]');hist.push({d:new Date().toISOString().slice(0,10),s:Math.round(s)});localStorage.setItem('asf-apnea-hist',JSON.stringify(hist));render();}
-function startTable(type){alert('Tabela '+type.toUpperCase()+' iniciada! Siga as instruções na tela com calma. (Versão completa em breve — seu máximo atual orienta a tabela O2: '+fmt(parseFloat(localStorage.getItem('asf-apnea-best')||60)*0.5)+' iniciais)');}
-function render(){const b=parseFloat(localStorage.getItem('asf-apnea-best')||0);document.getElementById('best').textContent=b?'🏆 Seu recorde: '+fmt(b):'';const h=JSON.parse(localStorage.getItem('asf-apnea-hist')||'[]').slice(-7);document.getElementById('log').innerHTML=h.length?'<h2>📈 Últimas sessões</h2>'+h.map(x=>`<p>${x.d} — ${fmt(x.s)}</p>`).join(''):'';}
-render();
+const XP=()=>parseInt(localStorage.getItem('asf_xp')||'0');
+function addXP(n){localStorage.setItem('asf_xp',XP()+n);document.getElementById('xp').textContent=XP();}
+document.getElementById('xp').textContent=XP();
+let iv,t0;function fmt(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}const r=parseInt(localStorage.getItem('asf_apnea')||'0');document.getElementById('rec').textContent=fmt(r);window.start=()=>{t0=Date.now();iv=setInterval(()=>{document.getElementById('t').textContent=fmt(Math.floor((Date.now()-t0)/1000));},250);};window.stop=()=>{clearInterval(iv);const s=Math.floor((Date.now()-t0)/1000);if(s>parseInt(localStorage.getItem('asf_apnea')||'0')){localStorage.setItem('asf_apnea',s);document.getElementById('rec').textContent=fmt(s);addXP(Math.min(30,Math.floor(s/2)));}};
 </script>
 </body>
 </html>
