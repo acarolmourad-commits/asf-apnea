@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASF Apneia — Treinador de apneia para surfistas</title>
+<meta name="description" content="Treine apneia e respiração para aguentar wipeouts com segurança. Tabelas CO2/O2, timer e evolução. Satélite do app ASF.">
+<link rel="canonical" href="https://acarolmourad-commits.github.io/asf-apnea/">
+<style>body{font-family:system-ui,sans-serif;margin:0;background:#0f172a;color:#e2e8f0}header{background:#0ea5e9;color:#082f49;padding:2rem;text-align:center}nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem;background:#1e293b}nav a{color:#7dd3fc;text-decoration:none;font-size:.85rem}main{max-width:640px;margin:2rem auto;padding:0 1rem;text-align:center}.card{background:#1e293b;border-radius:16px;padding:1.5rem;margin-bottom:1rem}#timer{font-size:4rem;font-variant-numeric:tabular-nums;margin:1rem 0}button{background:#0ea5e9;color:#082f49;border:0;border-radius:9999px;padding:.8rem 1.6rem;font-size:1rem;font-weight:700;cursor:pointer;margin:.25rem}button.sec{background:#334155;color:#e2e8f0}.warn{color:#fbbf24;font-size:.85rem}footer{text-align:center;padding:2rem;color:#64748b}</style>
+</head>
+<body>
+<header><h1>ASF Apneia 🫁</h1><p>Treinador de apneia e respiração — segure a calma no wipeout</p></header>
+<nav id="net"></nav>
+<main>
+<div class="card warn">⚠️ NUNCA treine apneia na água sozinha. Este app é para treino em seco, em segurança.</div>
+<div class="card">
+<h2>⏱️ Teste de apneia máxima</h2>
+<div id="timer">0:00</div>
+<button onclick="startHold()">Iniciar</button>
+<button class="sec" onclick="stopHold()">Parar e salvar</button>
+<p id="best"></p>
+</div>
+<div class="card">
+<h2>📋 Tabela CO2 (tolerância)</h2>
+<p>8 rodadas: respire 2:00, segure 45s • respire 1:45, segure 45s • reduza a respiração 15s por rodada mantendo o mesmo tempo de apneia.</p>
+<button onclick="startTable('co2')">Iniciar tabela CO2</button>
+</div>
+<div class="card">
+<h2>🌊 Tabela O2 (apneia máxima)</h2>
+<p>8 rodadas: respiração fixa de 2:00; a apneia aumenta 15s a cada rodada a partir de 50% do seu máximo.</p>
+<button onclick="startTable('o2')">Iniciar tabela O2</button>
+</div>
+<div class="card" id="log"></div>
+</main>
+<footer>ASF Apneia — satélite do <a href="https://acarolmourad-commits.github.io/asf-app/" style="color:#7dd3fc">app ASF</a> · combine com <a href="https://acarolmourad-commits.github.io/asf-seguranca/" style="color:#7dd3fc">ASF Segurança</a> e <a href="https://acarolmourad-commits.github.io/asf-bemestar/" style="color:#7dd3fc">ASF Bem-Estar</a></footer>
+<script>
+const sites=[["asf-app","App ASF"],["asf-praias","Praias"],["asf-previsao","Previsão"],["asf-treino","Treino"],["asf-eventos","Eventos"],["asf-glossario","Glossário"],["asf-comunidade","Comunidade"],["asf-seguranca","Segurança"],["asf-equipamento","Equipamento"],["asf-quiz","Quiz"],["asf-nutricao","Nutrição"],["asf-viagens","Viagens"],["asf-bemestar","Bem-Estar"],["asf-diario","Diário"],["asf-carona","Carona"]];
+document.getElementById('net').innerHTML=sites.map(s=>`<a href="https://acarolmourad-commits.github.io/${s[0]}/">${s[1]}</a>`).join('');
+let iv=null,t0=0;
+const fmt=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+function startHold(){t0=Date.now();clearInterval(iv);iv=setInterval(()=>{document.getElementById('timer').textContent=fmt((Date.now()-t0)/1000);},200);}
+function stopHold(){if(!t0)return;clearInterval(iv);const s=(Date.now()-t0)/1000;t0=0;const best=Math.max(s,parseFloat(localStorage.getItem('asf-apnea-best')||0));localStorage.setItem('asf-apnea-best',best);const hist=JSON.parse(localStorage.getItem('asf-apnea-hist')||'[]');hist.push({d:new Date().toISOString().slice(0,10),s:Math.round(s)});localStorage.setItem('asf-apnea-hist',JSON.stringify(hist));render();}
+function startTable(type){alert('Tabela '+type.toUpperCase()+' iniciada! Siga as instruções na tela com calma. (Versão completa em breve — seu máximo atual orienta a tabela O2: '+fmt(parseFloat(localStorage.getItem('asf-apnea-best')||60)*0.5)+' iniciais)');}
+function render(){const b=parseFloat(localStorage.getItem('asf-apnea-best')||0);document.getElementById('best').textContent=b?'🏆 Seu recorde: '+fmt(b):'';const h=JSON.parse(localStorage.getItem('asf-apnea-hist')||'[]').slice(-7);document.getElementById('log').innerHTML=h.length?'<h2>📈 Últimas sessões</h2>'+h.map(x=>`<p>${x.d} — ${fmt(x.s)}</p>`).join(''):'';}
+render();
+</script>
+</body>
+</html>
